@@ -50,7 +50,7 @@ def agregar(request):
             nueva_pieza = formulario.save()
             
             # Generar URL y QR
-            url_pieza = f"https://AdminQR.pythonanywhere.com/pieza/{nueva_pieza.id}/"
+            url_pieza = f"https://AdminQRs.pythonanywhere.com/pieza/{nueva_pieza.id}/"
             qr_img = qrcode.make(url_pieza)
             qr_filename = f'qr_{nueva_pieza.id}.png'
             qr_path = os.path.join(settings.MEDIA_ROOT, 'qr_codes', qr_filename)
