@@ -145,63 +145,64 @@
 
 <body>
     <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-top: 20px;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Admin Qr</a>
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'listado_piezas' %}">Piezas</a>
-                    </li>
-                    
-                    {% if user.is_authenticated %}
-                    {% if perms.myapp.view_agregar %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'listado_piezas' %}">Piezas</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{ user.first_name }} {{ user.last_name }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <form method="post" action="{% url 'logout' %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="dropdown-item">Cerrar sesión</button>
-                                </form>
-                            </li>
-                            <li><a class="dropdown-item" href="{% url 'editar_cuenta' %}">Editar cuenta</a></li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
-                    </li>
-                    {% endif %}
-                </ul>
-                <form class="d-flex" role="search" method="get" action="{% url 'home' %}">
-                    <input class="form-control me-2" type="search" name="query" placeholder="Buscar pieza"
-                        aria-label="Search" value="{{ request.GET.query }}">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
-            </div>
-            <!-- Botón de idioma fijo -->
-            <div id="google_translate_element" class="google-translate-container"></div>
+    <!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-top: 20px;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Admin Qr</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listado_piezas' %}">Piezas</a>
+                </li>
+                {% if user.is_authenticated %}
+                {% if perms.myapp.view_agregar %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listado_piezas' %}">Piezas</a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                            </form>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'editar_cuenta' %}">Editar cuenta</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+                </li>
+                {% endif %}
+            </ul>
+            <form class="d-flex me-3" role="search" method="get" action="{% url 'home' %}">
+                <input class="form-control me-2" type="search" name="query" placeholder="Buscar pieza"
+                    aria-label="Search" value="{{ request.GET.query }}">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            <!-- Botón de idioma dentro de la barra -->
+            <div id="google_translate_element" class="d-inline-block"></div>
         </div>
-    </nav>
+    </div>
+</nav>
+
      <!-- Botones principales -->
      <div class="button-group mt-4 text-center">
         {% if perms.myapp.view_agregar %}
@@ -242,3 +243,5 @@
 </body>
 
 </html>
+
+
